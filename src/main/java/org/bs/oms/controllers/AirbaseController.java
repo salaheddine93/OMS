@@ -17,13 +17,13 @@ public class AirbaseController {
     private final AirbaseService airbaseService;
 
     @GetMapping(path = "/airbases")
-    public List<Airbase> airbasesList(){
-        return airbaseService.getAllAirbases();
+    public ResponseEntity<List<Airbase>> airbasesList(){
+        return new ResponseEntity<>(airbaseService.getAllAirbases(), HttpStatus.OK);
     }
 
     @PostMapping(path = "/addAirbase")
     public ResponseEntity<Airbase> saveAirbase(@RequestBody Airbase airbase){
-        return ResponseEntity.status(HttpStatus.CREATED).body(airbaseService.addAirbase(airbase));
+        return new ResponseEntity<>(airbaseService.addAirbase(airbase), HttpStatus.CREATED);
     }
 
     @GetMapping(path = "/airbases/{id}")
@@ -32,7 +32,8 @@ public class AirbaseController {
     }
 
     @DeleteMapping(path = "/airbases/{id}")
-    public void deleteAirbase(@PathVariable Long id){
+    public ResponseEntity<?> deleteAirbase(@PathVariable Long id){
         airbaseService.deleteAirbaseById(id);
+        return ResponseEntity.noContent().build();
     }
 }

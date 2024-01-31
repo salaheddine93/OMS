@@ -2,6 +2,7 @@ package org.bs.oms;
 
 import org.bs.oms.entities.*;
 import org.bs.oms.repositories.*;
+import org.modelmapper.ModelMapper;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -16,6 +17,11 @@ public class OmsApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(OmsApplication.class, args);
+	}
+
+	@Bean
+	public ModelMapper modelMapper(){
+		return new ModelMapper();
 	}
 
 	@Bean
