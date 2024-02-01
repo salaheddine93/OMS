@@ -1,7 +1,8 @@
 package org.bs.oms.controllers;
 
 import lombok.RequiredArgsConstructor;
-import org.bs.oms.entities.Parking;
+import org.bs.oms.dto.requestDto.ParkingRequestDto;
+import org.bs.oms.dto.responseDto.ParkingResponseDto;
 import org.bs.oms.services.interfaces.ParkingService;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,17 +15,22 @@ public class ParkingController {
     private final ParkingService parkingService;
 
     @GetMapping(path = "/parking")
-    public List<Parking> parkingList(){
+    public List<ParkingResponseDto> parkingList(){
         return parkingService.getAllParking();
     }
 
     @PostMapping(path = "/addParking")
-    public Parking saveParking(@RequestBody Parking parking){
-        return parkingService.addParking(parking);
+    public ParkingResponseDto saveParking(@RequestBody ParkingRequestDto parkingRequestDto){
+        return parkingService.addParking(parkingRequestDto);
+    }
+
+    @PutMapping("/parking/{id}")
+    public ParkingResponseDto updateParking(@RequestBody ParkingRequestDto parkingRequestDto, @PathVariable Long id){
+        return parkingService.updateParking(parkingRequestDto, id);
     }
 
     @GetMapping(path = "/parking/{id}")
-    public Parking getParking(@PathVariable Long id){
+    public ParkingResponseDto getParking(@PathVariable Long id){
         return parkingService.parkingById(id);
     }
 

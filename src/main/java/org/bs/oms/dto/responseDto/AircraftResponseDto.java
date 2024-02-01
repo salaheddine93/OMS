@@ -1,4 +1,4 @@
-package org.bs.oms.dto;
+package org.bs.oms.dto.responseDto;
 
 public class AircraftResponseDto {
 }

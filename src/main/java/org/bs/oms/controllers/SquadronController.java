@@ -1,7 +1,8 @@
 package org.bs.oms.controllers;
 
 import lombok.RequiredArgsConstructor;
-import org.bs.oms.entities.Squadron;
+import org.bs.oms.dto.requestDto.SquadronRequestDto;
+import org.bs.oms.dto.responseDto.SquadronResponseDto;
 import org.bs.oms.services.interfaces.SquadronService;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,17 +15,22 @@ public class SquadronController {
     private final SquadronService squadronService;
 
     @GetMapping(path = "/squadrons")
-    public List<Squadron> squadronsList(){
+    public List<SquadronResponseDto> squadronsList(){
         return squadronService.getAllSquadrons();
     }
 
     @PostMapping(path = "/addSquadron")
-    public Squadron saveSquadron(@RequestBody Squadron squadron){
-        return squadronService.addSquadron(squadron);
+    public SquadronResponseDto saveSquadron(@RequestBody SquadronRequestDto squadronRequestDto){
+        return squadronService.addSquadron(squadronRequestDto);
+    }
+
+    @PutMapping("/squadrons/{id}")
+    public SquadronResponseDto updateSquadron(@RequestBody SquadronRequestDto squadronRequestDto, @PathVariable Long id){
+        return squadronService.updateSquadron(squadronRequestDto, id);
     }
 
     @GetMapping(path = "/squadrons/{id}")
-    public Squadron getSquadron(@PathVariable Long id){
+    public SquadronResponseDto getSquadron(@PathVariable Long id){
         return squadronService.squadronById(id);
     }
 

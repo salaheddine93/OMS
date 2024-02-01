@@ -1,16 +1,17 @@
 package org.bs.oms.services.implementations;
 
 import lombok.RequiredArgsConstructor;
-import org.bs.oms.dto.AirbaseRequestDto;
-import org.bs.oms.dto.AirbaseResponseDto;
+import org.bs.oms.dto.requestDto.AirbaseRequestDto;
+import org.bs.oms.dto.responseDto.AirbaseResponseDto;
 import org.bs.oms.entities.Airbase;
 import org.bs.oms.repositories.AirbaseRepo;
 import org.bs.oms.services.interfaces.AirbaseService;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -33,18 +34,29 @@ public class AirbaseServiceImpl implements AirbaseService {
     }
 
     @Override
-    public List<Airbase> getAllAirbases() {
-        List<Airbase> airbases = airbaseRepo.findAll();
-        return Collections.singletonList(modelMapper.map(airbases, AirbaseResponseDto.class));
+    public List<AirbaseResponseDto> getAllAirbases() {
+        return airbaseRepo.findAll()
+                .stream().map(item -> modelMapper.map(item, AirbaseResponseDto.class))
+                .collect(Collectors.toList());
     }
 
     @Override
     public AirbaseResponseDto updateAirbase(AirbaseRequestDto airbaseRequestDto, Long id) {
-        return null;
+        Optional<Airbase> airbaseOptional = airbaseRepo.findById(id);
+        if (airbaseOptional.isPresent()){
+            Airbase airbase = modelMapper.map(airbaseRequestDto, Airbase.class);
+            airbase.setId(id);
+            Airbase updatedAirbase = airbaseRepo.save(airbase);
+            return modelMapper.map(updatedAirbase, AirbaseResponseDto.class);
+        }else {
+            throw new RuntimeException("Airbase not found !!!");
+        }
     }
 
     @Override
     public void deleteAirbaseById(Long id) {
         airbaseRepo.deleteById(id);
+//        Airbase airbase = airbaseRepo.findById(id).get();
+//        airbaseRepo.delete(airbase);
     }
 }

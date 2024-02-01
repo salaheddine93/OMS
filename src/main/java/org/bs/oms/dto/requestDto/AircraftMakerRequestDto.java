@@ -1,4 +1,4 @@
-package org.bs.oms.dto;
+package org.bs.oms.dto.requestDto;
 
 public class AircraftMakerRequestDto {
 }

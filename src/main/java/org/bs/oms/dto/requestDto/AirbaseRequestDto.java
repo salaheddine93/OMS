@@ -1,4 +1,4 @@
-package org.bs.oms.dto;
+package org.bs.oms.dto.requestDto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -12,7 +12,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class AirbaseRequestDto {
-
+    
     private String name;
     private String city;
     private List<Parking> parkings = new ArrayList<>();

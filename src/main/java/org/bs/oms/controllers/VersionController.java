@@ -1,6 +1,8 @@
 package org.bs.oms.controllers;
 
 import lombok.RequiredArgsConstructor;
+import org.bs.oms.dto.requestDto.VersionRequestDto;
+import org.bs.oms.dto.responseDto.VersionResponseDto;
 import org.bs.oms.entities.Version;
 import org.bs.oms.services.interfaces.VersionService;
 import org.springframework.web.bind.annotation.*;
@@ -14,17 +16,22 @@ public class VersionController {
     private final VersionService versionService;
 
     @GetMapping(path = "/versions")
-    public List<Version> versionsList(){
+    public List<VersionResponseDto> versionsList(){
         return versionService.getAllVersions();
     }
 
     @PostMapping(path = "/addVersion")
-    public Version saveVersion(@RequestBody Version version){
-        return versionService.addVersion(version);
+    public VersionResponseDto saveVersion(@RequestBody VersionRequestDto versionRequestDto){
+        return versionService.addVersion(versionRequestDto);
+    }
+
+    @PutMapping("/versions/{id}")
+    public VersionResponseDto updateVersion(@RequestBody VersionRequestDto versionRequestDto, @PathVariable Long id){
+        return versionService.updateVersion(versionRequestDto, id);
     }
 
     @GetMapping(path = "/versions/{id}")
-    public Version getVersion(@PathVariable Long id){
+    public VersionResponseDto getVersion(@PathVariable Long id){
         return versionService.versionById(id);
     }
 
