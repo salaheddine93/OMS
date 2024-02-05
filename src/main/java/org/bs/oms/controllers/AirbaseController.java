@@ -27,8 +27,8 @@ public class AirbaseController {
     }
 
     @GetMapping(path = "/airbases/{id}")
-    public AirbaseResponseDto getAirbase(@PathVariable Long id){
-        return airbaseService.airbaseById(id);
+    public ResponseEntity<AirbaseResponseDto> getAirbase(@PathVariable Long id){
+        return new ResponseEntity<>(airbaseService.airbaseById(id), HttpStatus.OK);
     }
 
     @DeleteMapping(path = "/airbases/{id}")
@@ -38,7 +38,7 @@ public class AirbaseController {
     }
 
     @PutMapping(path = "/airbases/{id}")
-    public AirbaseResponseDto updateAirbase(@RequestBody AirbaseRequestDto airbaseRequestDto, @PathVariable Long id) {
-        return airbaseService.updateAirbase(airbaseRequestDto, id);
+    public ResponseEntity<AirbaseResponseDto> updateAirbase(@RequestBody AirbaseRequestDto airbaseRequestDto, @PathVariable Long id) {
+        return new ResponseEntity<>(airbaseService.updateAirbase(airbaseRequestDto, id), HttpStatus.ACCEPTED);
     }
 }
