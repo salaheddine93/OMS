@@ -1,4 +1,4 @@
-package org.bs.oms.dto.responseDto;
+package org.bs.oms.dto.responseDTO;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -11,7 +11,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class AirbaseResponseDto {
+public class AirbaseResponseDTO {
 
     private Long id;
     private String name;

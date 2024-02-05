@@ -26,7 +26,7 @@ public class OmsApplication {
 
 	@Bean
 	CommandLineRunner start(AirbaseRepo airbaseRepo, PlaceRepo placeRepo, ParkingRepo parkingRepo, SquadronRepo squadronRepo,
-							AircraftMakerRepo aircraftMakerRepo, VersionRepo versionRepo, AircraftRepo aircraftRepo){
+							AircraftMakerRepo aircraftMakerRepo, VersionRepo versionRepo, AircraftRepo aircraftRepo, DailySituationRepo dailySituationRepo){
 		return args -> {
 
 			// AirBases Creation
@@ -130,6 +130,23 @@ public class OmsApplication {
 			aircraft.setAirbase(airbaseRepo.findById(1L).get());
 			aircraft.setSquadron(squadronRepo.findById(1L).get());
 			aircraftRepo.save(aircraft);
+
+			// DailySituation testing
+			DailySituation dailySituation = new DailySituation();
+			Place place = placeRepo.findById(8L).get();
+			Aircraft airplane = aircraftRepo.findById(1L).get();
+			dailySituation.setAircraft(airplane);
+			dailySituation.setPlace(place);
+			dailySituation.setDate(new Date());
+			dailySituationRepo.save(dailySituation);
+
+
+
+
+			//***************
+			Airbase airbase = new Airbase();
+			airbase.setName("Test");
+			airbaseRepo.save(airbase);
 
 		};
 	}

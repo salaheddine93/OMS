@@ -1,8 +1,8 @@
 package org.bs.oms.services.implementations;
 
 import lombok.RequiredArgsConstructor;
-import org.bs.oms.dto.requestDto.SquadronRequestDto;
-import org.bs.oms.dto.responseDto.SquadronResponseDto;
+import org.bs.oms.dto.requestDTO.SquadronRequestDTO;
+import org.bs.oms.dto.responseDTO.SquadronResponseDTO;
 import org.bs.oms.entities.Squadron;
 import org.bs.oms.repositories.SquadronRepo;
 import org.bs.oms.services.interfaces.SquadronService;
@@ -21,33 +21,33 @@ public class SquadronServiceImpl implements SquadronService {
     private final ModelMapper modelMapper;
 
     @Override
-    public SquadronResponseDto addSquadron(SquadronRequestDto squadronRequestDto) {
-        Squadron squadron = modelMapper.map(squadronRequestDto, Squadron.class);
+    public SquadronResponseDTO addSquadron(SquadronRequestDTO squadronRequestDTO) {
+        Squadron squadron = modelMapper.map(squadronRequestDTO, Squadron.class);
         Squadron savedSquadron = squadronRepo.save(squadron);
-        return modelMapper.map(savedSquadron, SquadronResponseDto.class);
+        return modelMapper.map(savedSquadron, SquadronResponseDTO.class);
     }
 
     @Override
-    public SquadronResponseDto squadronById(Long id) {
+    public SquadronResponseDTO squadronById(Long id) {
         Squadron squadron = squadronRepo.findById(id).orElseThrow(()-> new RuntimeException("Squadron not found !!!"));
-        return modelMapper.map(squadron, SquadronResponseDto.class);
+        return modelMapper.map(squadron, SquadronResponseDTO.class);
     }
 
     @Override
-    public List<SquadronResponseDto> getAllSquadrons() {
+    public List<SquadronResponseDTO> getAllSquadrons() {
         return squadronRepo.findAll()
-                .stream().map(item -> modelMapper.map(item, SquadronResponseDto.class))
+                .stream().map(item -> modelMapper.map(item, SquadronResponseDTO.class))
                 .collect(Collectors.toList());
     }
 
     @Override
-    public SquadronResponseDto updateSquadron(SquadronRequestDto squadronRequestDto, Long id) {
+    public SquadronResponseDTO updateSquadron(SquadronRequestDTO squadronRequestDTO, Long id) {
         Optional<Squadron> squadronOptional = squadronRepo.findById(id);
         if (squadronOptional.isPresent()){
-            Squadron squadron = modelMapper.map(squadronRequestDto, Squadron.class);
+            Squadron squadron = modelMapper.map(squadronRequestDTO, Squadron.class);
             squadron.setId(id);
             Squadron updatedSquadron = squadronRepo.save(squadron);
-            return modelMapper.map(updatedSquadron, SquadronResponseDto.class);
+            return modelMapper.map(updatedSquadron, SquadronResponseDTO.class);
         }else {
             throw new RuntimeException("Squadron not found !!!");
         }

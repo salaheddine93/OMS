@@ -1,6 +1,8 @@
 package org.bs.oms.controllers;
 
 import lombok.RequiredArgsConstructor;
+import org.bs.oms.dto.requestDTO.AircraftMakerRequestDTO;
+import org.bs.oms.dto.responseDTO.AircraftMakerResponseDTO;
 import org.bs.oms.entities.AircraftMaker;
 import org.bs.oms.services.interfaces.AircraftMakerService;
 import org.springframework.web.bind.annotation.*;
@@ -9,26 +11,27 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
+@RequestMapping("/api/aircraftMakers")
 public class AircraftMakerController {
 
     private final AircraftMakerService aircraftMakerService;
 
-    @GetMapping(path = "/aircraftMakers")
-    public List<AircraftMaker> aircraftMakerList(){
+    @GetMapping(path = "/all")
+    public List<AircraftMakerResponseDTO> aircraftMakerList(){
         return aircraftMakerService.getAllAircraftMakers();
     }
 
-    @PostMapping(path = "/addAircraftMaker")
-    public AircraftMaker saveAircraft(@RequestBody AircraftMaker aircraftMaker){
-        return aircraftMakerService.addAircraftMaker(aircraftMaker);
+    @PostMapping(path = "/add")
+    public AircraftMakerResponseDTO saveAircraft(@RequestBody AircraftMakerRequestDTO aircraftMakerRequestDTO){
+        return aircraftMakerService.addAircraftMaker(aircraftMakerRequestDTO);
     }
 
-    @GetMapping(path = "/aircraftMakers/{id}")
-    public AircraftMaker getAircraft(@PathVariable Long id){
+    @GetMapping(path = "/{id}")
+    public AircraftMakerResponseDTO getAircraft(@PathVariable Long id){
         return aircraftMakerService.aircraftMakerById(id);
     }
 
-    @DeleteMapping(path = "/aircraftMakers/{id}")
+    @DeleteMapping(path = "/{id}")
     public void deleteAircraft(@PathVariable Long id){
         aircraftMakerService.deleteAircraftMakerById(id);
     }

@@ -1,15 +1,14 @@
 package org.bs.oms.services.interfaces;
 
-import org.bs.oms.dto.requestDto.AirbaseRequestDto;
-import org.bs.oms.dto.responseDto.AirbaseResponseDto;
-import org.bs.oms.entities.Airbase;
+import org.bs.oms.dto.requestDTO.AirbaseRequestDTO;
+import org.bs.oms.dto.responseDTO.AirbaseResponseDTO;
 
 import java.util.List;
 
 public interface AirbaseService {
-    AirbaseResponseDto addAirbase(AirbaseRequestDto airbaseRequestDto);
-    AirbaseResponseDto airbaseById(Long id);
-    List<AirbaseResponseDto> getAllAirbases();
-    AirbaseResponseDto updateAirbase(AirbaseRequestDto airbaseRequestDto, Long id);
-    void deleteAirbaseById(Long id);
+    AirbaseResponseDTO addAirbase(AirbaseRequestDTO airbaseRequestDTO);
+    AirbaseResponseDTO airbaseById(Long id);
+    List<AirbaseResponseDTO> getAllAirbases();
+    AirbaseResponseDTO updateAirbase(AirbaseRequestDTO airbaseRequestDTO, Long id);
+    String deleteAirbaseById(Long id);
 }

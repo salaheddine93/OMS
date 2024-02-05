@@ -1,4 +1,4 @@
-package org.bs.oms.dto.responseDto;
+package org.bs.oms.dto.responseDTO;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -10,7 +10,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ParkingResponseDto {
+public class ParkingResponseDTO {
     private Long id;
     private String name;
     private String color;

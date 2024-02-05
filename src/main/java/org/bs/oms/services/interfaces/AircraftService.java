@@ -1,16 +1,15 @@
 package org.bs.oms.services.interfaces;
 
-import org.bs.oms.dto.requestDto.AircraftRequestDto;
-import org.bs.oms.dto.responseDto.AircraftResponseDto;
-import org.bs.oms.entities.Aircraft;
+import org.bs.oms.dto.requestDTO.AircraftRequestDTO;
+import org.bs.oms.dto.responseDTO.AircraftResponseDTO;
 
 import java.util.List;
 
 public interface AircraftService {
 
-    AircraftResponseDto addAircraft(AircraftRequestDto aircraftRequestDto);
-    AircraftResponseDto aircraftById(Long id);
-    List<AircraftResponseDto> getAllAircrafts();
-    AircraftResponseDto updateAircraft(AircraftRequestDto aircraftRequestDto, Long id);
+    AircraftResponseDTO addAircraft(AircraftRequestDTO aircraftRequestDTO);
+    AircraftResponseDTO aircraftById(Long id);
+    List<AircraftResponseDTO> getAllAircrafts();
+    AircraftResponseDTO updateAircraft(AircraftRequestDTO aircraftRequestDTO, Long id);
     void deleteAircraftById(Long id);
 }

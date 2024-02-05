@@ -1,17 +1,16 @@
 package org.bs.oms.services.interfaces;
 
-import org.bs.oms.dto.requestDto.SquadronRequestDto;
-import org.bs.oms.dto.responseDto.SquadronResponseDto;
-import org.bs.oms.entities.Squadron;
+import org.bs.oms.dto.requestDTO.SquadronRequestDTO;
+import org.bs.oms.dto.responseDTO.SquadronResponseDTO;
 
 import java.util.List;
 
 public interface SquadronService {
 
-    SquadronResponseDto addSquadron(SquadronRequestDto squadronRequestDto);
-    SquadronResponseDto squadronById(Long id);
-    List<SquadronResponseDto> getAllSquadrons();
+    SquadronResponseDTO addSquadron(SquadronRequestDTO squadronRequestDTO);
+    SquadronResponseDTO squadronById(Long id);
+    List<SquadronResponseDTO> getAllSquadrons();
 
-    SquadronResponseDto updateSquadron(SquadronRequestDto squadronRequestDto, Long id);
+    SquadronResponseDTO updateSquadron(SquadronRequestDTO squadronRequestDTO, Long id);
     void deleteSquadronById(Long id);
 }

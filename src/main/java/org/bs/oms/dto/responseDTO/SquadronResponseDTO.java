@@ -1,4 +1,4 @@
-package org.bs.oms.dto.responseDto;
+package org.bs.oms.dto.responseDTO;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class SquadronResponseDto {
+public class SquadronResponseDTO {
 
     private Long id;
     private String name;

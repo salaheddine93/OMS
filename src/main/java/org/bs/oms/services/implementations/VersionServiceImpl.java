@@ -1,8 +1,8 @@
 package org.bs.oms.services.implementations;
 
 import lombok.RequiredArgsConstructor;
-import org.bs.oms.dto.requestDto.VersionRequestDto;
-import org.bs.oms.dto.responseDto.VersionResponseDto;
+import org.bs.oms.dto.requestDTO.VersionRequestDTO;
+import org.bs.oms.dto.responseDTO.VersionResponseDTO;
 import org.bs.oms.entities.Version;
 import org.bs.oms.repositories.VersionRepo;
 import org.bs.oms.services.interfaces.VersionService;
@@ -21,40 +21,47 @@ public class VersionServiceImpl implements VersionService {
     private final ModelMapper modelMapper;
 
     @Override
-    public VersionResponseDto addVersion(VersionRequestDto versionRequestDto) {
-        Version version = modelMapper.map(versionRequestDto, Version.class);
+    public VersionResponseDTO addVersion(VersionRequestDTO versionRequestDTO) {
+        Version version = modelMapper.map(versionRequestDTO, Version.class);
         Version savedVersion = versionRepo.save(version);
-        return modelMapper.map(savedVersion, VersionResponseDto.class);
+        return modelMapper.map(savedVersion, VersionResponseDTO.class);
     }
 
     @Override
-    public VersionResponseDto versionById(Long id) {
+    public VersionResponseDTO versionById(Long id) {
         Version version = versionRepo.findById(id).orElseThrow(()-> new RuntimeException("Version not found !!!"));
-        return modelMapper.map(version, VersionResponseDto.class);
+        return modelMapper.map(version, VersionResponseDTO.class);
     }
 
     @Override
-    public VersionResponseDto updateVersion(VersionRequestDto versionRequestDto, Long id) {
+    public VersionResponseDTO updateVersion(VersionRequestDTO versionRequestDTO, Long id) {
         Optional<Version> versionOptional = versionRepo.findById(id);
         if (versionOptional.isPresent()){
-            Version version = modelMapper.map(versionRequestDto, Version.class);
+            Version version = modelMapper.map(versionRequestDTO, Version.class);
             version.setId(id);
             Version savedVersion = versionRepo.save(version);
-            return modelMapper.map(savedVersion, VersionResponseDto.class);
+            return modelMapper.map(savedVersion, VersionResponseDTO.class);
         }else {
             throw new RuntimeException("Version not found !!!");
         }
     }
 
     @Override
-    public List<VersionResponseDto> getAllVersions() {
+    public List<VersionResponseDTO> getAllVersions() {
         return versionRepo.findAll()
-                .stream().map(item -> modelMapper.map(item, VersionResponseDto.class))
+                .stream().map(item -> modelMapper.map(item, VersionResponseDTO.class))
                 .collect(Collectors.toList());
     }
 
     @Override
-    public void deleteVersionById(Long id) {
-        versionRepo.deleteById(id);
+    public String deleteVersionById(Long id) {
+        Optional<Version> versionOptional = versionRepo.findById(id);
+        if (versionOptional.isPresent()){
+            Version version = modelMapper.map(versionOptional, Version.class);
+            versionRepo.delete(version);
+            return "Version : " + id + "has been deleted successfully ";
+        }else {
+            throw new RuntimeException("Version : " + id + " not found !!!");
+        }
     }
 }

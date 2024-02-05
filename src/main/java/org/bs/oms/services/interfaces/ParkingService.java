@@ -1,17 +1,16 @@
 package org.bs.oms.services.interfaces;
 
-import org.bs.oms.dto.requestDto.ParkingRequestDto;
-import org.bs.oms.dto.responseDto.ParkingResponseDto;
-import org.bs.oms.entities.Parking;
+import org.bs.oms.dto.requestDTO.ParkingRequestDTO;
+import org.bs.oms.dto.responseDTO.ParkingResponseDTO;
 
 import java.util.List;
 
 public interface ParkingService {
 
-    ParkingResponseDto addParking(ParkingRequestDto parkingRequestDto);
-    ParkingResponseDto parkingById(Long id);
-    List<ParkingResponseDto> getAllParking();
+    ParkingResponseDTO addParking(ParkingRequestDTO parkingRequestDTO);
+    ParkingResponseDTO parkingById(Long id);
+    List<ParkingResponseDTO> getAllParking();
 
-    ParkingResponseDto updateParking(ParkingRequestDto parkingRequestDto, Long id);
+    ParkingResponseDTO updateParking(ParkingRequestDTO parkingRequestDTO, Long id);
     void deleteParkingById(Long id);
 }

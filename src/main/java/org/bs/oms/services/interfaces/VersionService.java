@@ -1,17 +1,16 @@
 package org.bs.oms.services.interfaces;
 
-import org.bs.oms.dto.requestDto.VersionRequestDto;
-import org.bs.oms.dto.responseDto.VersionResponseDto;
-import org.bs.oms.entities.Version;
+import org.bs.oms.dto.requestDTO.VersionRequestDTO;
+import org.bs.oms.dto.responseDTO.VersionResponseDTO;
 
 import java.util.List;
 
 public interface VersionService {
 
-    VersionResponseDto addVersion(VersionRequestDto versionRequestDto);
-    VersionResponseDto versionById(Long id);
+    VersionResponseDTO addVersion(VersionRequestDTO versionRequestDTO);
+    VersionResponseDTO versionById(Long id);
 
-    VersionResponseDto updateVersion(VersionRequestDto versionRequestDto, Long id);
-    List<VersionResponseDto> getAllVersions();
-    void deleteVersionById(Long id);
+    VersionResponseDTO updateVersion(VersionRequestDTO versionRequestDTO, Long id);
+    List<VersionResponseDTO> getAllVersions();
+    String deleteVersionById(Long id);
 }

@@ -1,4 +1,4 @@
-package org.bs.oms.dto.requestDto;
+package org.bs.oms.dto.requestDTO;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -10,7 +10,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ParkingRequestDto {
+public class ParkingRequestDTO {
 
     private String name;
     private String color;

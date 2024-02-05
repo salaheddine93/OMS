@@ -1,8 +1,8 @@
 package org.bs.oms.services.implementations;
 
 import lombok.RequiredArgsConstructor;
-import org.bs.oms.dto.requestDto.ParkingRequestDto;
-import org.bs.oms.dto.responseDto.ParkingResponseDto;
+import org.bs.oms.dto.requestDTO.ParkingRequestDTO;
+import org.bs.oms.dto.responseDTO.ParkingResponseDTO;
 import org.bs.oms.entities.Parking;
 import org.bs.oms.repositories.ParkingRepo;
 import org.bs.oms.services.interfaces.ParkingService;
@@ -21,33 +21,33 @@ public class ParkingServiceImpl implements ParkingService {
     private final ModelMapper modelMapper;
 
     @Override
-    public ParkingResponseDto addParking(ParkingRequestDto parkingRequestDto) {
-        Parking parking = modelMapper.map(parkingRequestDto, Parking.class);
+    public ParkingResponseDTO addParking(ParkingRequestDTO parkingRequestDTO) {
+        Parking parking = modelMapper.map(parkingRequestDTO, Parking.class);
         Parking savedParking = parkingRepo.save(parking);
-        return modelMapper.map(savedParking, ParkingResponseDto.class);
+        return modelMapper.map(savedParking, ParkingResponseDTO.class);
     }
 
     @Override
-    public ParkingResponseDto parkingById(Long id) {
+    public ParkingResponseDTO parkingById(Long id) {
         Parking parking = parkingRepo.findById(id).orElseThrow(()-> new RuntimeException("Parking not found !!!"));
-        return modelMapper.map(parking, ParkingResponseDto.class);
+        return modelMapper.map(parking, ParkingResponseDTO.class);
     }
 
     @Override
-    public List<ParkingResponseDto> getAllParking() {
+    public List<ParkingResponseDTO> getAllParking() {
         return parkingRepo.findAll()
-                .stream().map(item -> modelMapper.map(item, ParkingResponseDto.class))
+                .stream().map(item -> modelMapper.map(item, ParkingResponseDTO.class))
                 .collect(Collectors.toList());
     }
 
     @Override
-    public ParkingResponseDto updateParking(ParkingRequestDto parkingRequestDto, Long id) {
+    public ParkingResponseDTO updateParking(ParkingRequestDTO parkingRequestDTO, Long id) {
         Optional<Parking> parkingOptional = parkingRepo.findById(id);
         if (parkingOptional.isPresent()) {
-            Parking parking = modelMapper.map(parkingRequestDto, Parking.class);
+            Parking parking = modelMapper.map(parkingRequestDTO, Parking.class);
             parking.setId(id);
             Parking updatedParking = parkingRepo.save(parking);
-            return modelMapper.map(updatedParking, ParkingResponseDto.class);
+            return modelMapper.map(updatedParking, ParkingResponseDTO.class);
         }else {
             throw new RuntimeException("Parking not found !!!");
         }

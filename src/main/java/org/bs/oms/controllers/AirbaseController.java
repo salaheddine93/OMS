@@ -1,8 +1,8 @@
 package org.bs.oms.controllers;
 
 import lombok.RequiredArgsConstructor;
-import org.bs.oms.dto.requestDto.AirbaseRequestDto;
-import org.bs.oms.dto.responseDto.AirbaseResponseDto;
+import org.bs.oms.dto.requestDTO.AirbaseRequestDTO;
+import org.bs.oms.dto.responseDTO.AirbaseResponseDTO;
 import org.bs.oms.services.interfaces.AirbaseService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,33 +12,36 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
+@RequestMapping("/api/airbases")
 public class AirbaseController {
 
     private final AirbaseService airbaseService;
 
-    @GetMapping(path = "/airbases")
-    public ResponseEntity<List<AirbaseResponseDto>> airbasesList(){
+    @GetMapping(path = "/all")
+    public ResponseEntity<List<AirbaseResponseDTO>> airbasesList(){
         return new ResponseEntity<>(airbaseService.getAllAirbases(), HttpStatus.OK);
     }
 
-    @PostMapping(path = "/addAirbase")
-    public ResponseEntity<AirbaseResponseDto> saveAirbase(@RequestBody AirbaseRequestDto airbaseRequestDto){
-        return new ResponseEntity<>(airbaseService.addAirbase(airbaseRequestDto), HttpStatus.CREATED);
+    @PostMapping(path = "/add")
+    public ResponseEntity<AirbaseResponseDTO> saveAirbase(@RequestBody AirbaseRequestDTO airbaseRequestDTO){
+        return new ResponseEntity<>(airbaseService.addAirbase(airbaseRequestDTO), HttpStatus.CREATED);
     }
 
-    @GetMapping(path = "/airbases/{id}")
-    public ResponseEntity<AirbaseResponseDto> getAirbase(@PathVariable Long id){
+    @GetMapping(path = "/{id}")
+    public ResponseEntity<AirbaseResponseDTO> getAirbase(@PathVariable Long id){
         return new ResponseEntity<>(airbaseService.airbaseById(id), HttpStatus.OK);
     }
 
-    @DeleteMapping(path = "/airbases/{id}")
-    public ResponseEntity<?> deleteAirbase(@PathVariable Long id){
-        airbaseService.deleteAirbaseById(id);
-        return ResponseEntity.noContent().build();
+    @DeleteMapping(path = "/{id}")
+    public ResponseEntity<String> deleteAirbase(@PathVariable Long id){
+        return new ResponseEntity<>(airbaseService.deleteAirbaseById(id), HttpStatus.NO_CONTENT);
+         //ResponseEntity.noContent().build();
+
+        //**** Why it does not display the message after the deleting process
     }
 
-    @PutMapping(path = "/airbases/{id}")
-    public ResponseEntity<AirbaseResponseDto> updateAirbase(@RequestBody AirbaseRequestDto airbaseRequestDto, @PathVariable Long id) {
-        return new ResponseEntity<>(airbaseService.updateAirbase(airbaseRequestDto, id), HttpStatus.ACCEPTED);
+    @PutMapping(path = "/{id}")
+    public ResponseEntity<AirbaseResponseDTO> updateAirbase(@RequestBody AirbaseRequestDTO airbaseRequestDTO, @PathVariable Long id) {
+        return new ResponseEntity<>(airbaseService.updateAirbase(airbaseRequestDTO, id), HttpStatus.ACCEPTED);
     }
 }

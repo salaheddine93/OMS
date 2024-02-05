@@ -1,4 +1,4 @@
-package org.bs.oms.dto.requestDto;
+package org.bs.oms.dto.requestDTO;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,7 +9,7 @@ import java.util.Date;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class VersionRequestDto {
+public class VersionRequestDTO {
 
     private String version;
     private Date date;

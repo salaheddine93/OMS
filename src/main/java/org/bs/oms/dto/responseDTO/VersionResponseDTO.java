@@ -1,4 +1,4 @@
-package org.bs.oms.dto.responseDto;
+package org.bs.oms.dto.responseDTO;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,7 +9,7 @@ import java.util.Date;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class VersionResponseDto {
+public class VersionResponseDTO {
 
     private Long id;
     private String version;
