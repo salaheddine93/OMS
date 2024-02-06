@@ -3,8 +3,9 @@ package org.bs.oms.controllers;
 import lombok.RequiredArgsConstructor;
 import org.bs.oms.dto.requestDTO.VersionRequestDTO;
 import org.bs.oms.dto.responseDTO.VersionResponseDTO;
-import org.bs.oms.exceptions.ApiRequestException;
 import org.bs.oms.services.interfaces.VersionService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,32 +18,28 @@ public class VersionController {
     private final VersionService versionService;
 
     @GetMapping(path = "/all")
-    public List<VersionResponseDTO> versionsList(){
-        return versionService.getAllVersions();
+    public ResponseEntity<List<VersionResponseDTO>> versionsList(){
+        return new ResponseEntity<>(versionService.getAllVersions(), HttpStatus.OK);
     }
 
-//    @GetMapping(path = "/all")
-//    public List<VersionResponseDTO> versionsList(){
-//       throw new ApiRequestException("Exceptions testiong !!!");
-//    }
-
     @PostMapping(path = "/add")
-    public VersionResponseDTO saveVersion(@RequestBody VersionRequestDTO versionRequestDTO){
-        return versionService.addVersion(versionRequestDTO);
+    public ResponseEntity<VersionResponseDTO> saveVersion(@RequestBody VersionRequestDTO versionRequestDTO){
+        return new ResponseEntity<>(versionService.addVersion(versionRequestDTO), HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
-    public VersionResponseDTO updateVersion(@RequestBody VersionRequestDTO versionRequestDTO, @PathVariable Long id){
-        return versionService.updateVersion(versionRequestDTO, id);
+    public ResponseEntity<VersionResponseDTO> updateVersion(@RequestBody VersionRequestDTO versionRequestDTO, @PathVariable Long id){
+        return new ResponseEntity<>(versionService.updateVersion(versionRequestDTO, id), HttpStatus.ACCEPTED);
     }
 
     @GetMapping(path = "/{id}")
-    public VersionResponseDTO getVersion(@PathVariable Long id){
-        return versionService.versionById(id);
+    public ResponseEntity<VersionResponseDTO> getVersion(@PathVariable Long id){
+        return new ResponseEntity<>(versionService.versionById(id), HttpStatus.OK);
     }
 
     @DeleteMapping(path = "/{id}")
-    public void deleteVersion(@PathVariable Long id){
+    public ResponseEntity<?> deleteVersion(@PathVariable Long id){
         versionService.deleteVersionById(id);
+        return ResponseEntity.noContent().build();
     }
 }

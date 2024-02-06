@@ -4,6 +4,8 @@ import lombok.RequiredArgsConstructor;
 import org.bs.oms.dto.requestDTO.SquadronRequestDTO;
 import org.bs.oms.dto.responseDTO.SquadronResponseDTO;
 import org.bs.oms.services.interfaces.SquadronService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,27 +18,28 @@ public class SquadronController {
     private final SquadronService squadronService;
 
     @GetMapping(path = "/all")
-    public List<SquadronResponseDTO> squadronsList(){
-        return squadronService.getAllSquadrons();
+    public ResponseEntity<List<SquadronResponseDTO>> squadronsList(){
+        return new ResponseEntity<>(squadronService.getAllSquadrons(), HttpStatus.OK);
     }
 
     @PostMapping(path = "/add")
-    public SquadronResponseDTO saveSquadron(@RequestBody SquadronRequestDTO squadronRequestDTO){
-        return squadronService.addSquadron(squadronRequestDTO);
+    public ResponseEntity<SquadronResponseDTO> saveSquadron(@RequestBody SquadronRequestDTO squadronRequestDTO){
+        return new ResponseEntity<>(squadronService.addSquadron(squadronRequestDTO), HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
-    public SquadronResponseDTO updateSquadron(@RequestBody SquadronRequestDTO squadronRequestDTO, @PathVariable Long id){
-        return squadronService.updateSquadron(squadronRequestDTO, id);
+    public ResponseEntity<SquadronResponseDTO> updateSquadron(@RequestBody SquadronRequestDTO squadronRequestDTO, @PathVariable Long id){
+        return new ResponseEntity<>(squadronService.updateSquadron(squadronRequestDTO, id), HttpStatus.ACCEPTED);
     }
 
     @GetMapping(path = "/{id}")
-    public SquadronResponseDTO getSquadron(@PathVariable Long id){
-        return squadronService.squadronById(id);
+    public ResponseEntity<SquadronResponseDTO> getSquadron(@PathVariable Long id){
+        return new ResponseEntity<>(squadronService.squadronById(id), HttpStatus.OK);
     }
 
     @DeleteMapping(path = "/{id}")
-    public void deleteSquadron(@PathVariable Long id){
+    public ResponseEntity<?> deleteSquadron(@PathVariable Long id){
         squadronService.deleteSquadronById(id);
+        return ResponseEntity.noContent().build();
     }
 }

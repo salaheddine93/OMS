@@ -4,6 +4,8 @@ import lombok.RequiredArgsConstructor;
 import org.bs.oms.dto.requestDTO.ParkingRequestDTO;
 import org.bs.oms.dto.responseDTO.ParkingResponseDTO;
 import org.bs.oms.services.interfaces.ParkingService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,27 +18,28 @@ public class ParkingController {
     private final ParkingService parkingService;
 
     @GetMapping(path = "/all")
-    public List<ParkingResponseDTO> parkingList(){
-        return parkingService.getAllParking();
+    public ResponseEntity<List<ParkingResponseDTO>> parkingList(){
+        return new ResponseEntity<>(parkingService.getAllParking(), HttpStatus.OK);
     }
 
     @PostMapping(path = "/add")
-    public ParkingResponseDTO saveParking(@RequestBody ParkingRequestDTO parkingRequestDTO){
-        return parkingService.addParking(parkingRequestDTO);
+    public ResponseEntity<ParkingResponseDTO> saveParking(@RequestBody ParkingRequestDTO parkingRequestDTO){
+        return new ResponseEntity<>(parkingService.addParking(parkingRequestDTO), HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
-    public ParkingResponseDTO updateParking(@RequestBody ParkingRequestDTO parkingRequestDTO, @PathVariable Long id){
-        return parkingService.updateParking(parkingRequestDTO, id);
+    public ResponseEntity<ParkingResponseDTO> updateParking(@RequestBody ParkingRequestDTO parkingRequestDTO, @PathVariable Long id){
+        return new ResponseEntity<>(parkingService.updateParking(parkingRequestDTO, id), HttpStatus.ACCEPTED);
     }
 
     @GetMapping(path = "/{id}")
-    public ParkingResponseDTO getParking(@PathVariable Long id){
-        return parkingService.parkingById(id);
+    public ResponseEntity<ParkingResponseDTO> getParking(@PathVariable Long id){
+        return new ResponseEntity<>(parkingService.parkingById(id), HttpStatus.OK);
     }
 
     @DeleteMapping(path = "/{id}")
-    public void deleteParking(@PathVariable Long id){
+    public ResponseEntity<?> deleteParking(@PathVariable Long id){
         parkingService.deleteParkingById(id);
+        return ResponseEntity.noContent().build();
     }
 }
