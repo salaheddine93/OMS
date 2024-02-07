@@ -19,6 +19,6 @@ public class Airbase {
     private Long id;
     private String name;
     private String city;
-    @ManyToMany(fetch= FetchType.EAGER)
+    @OneToMany(fetch= FetchType.EAGER)
     private List<Parking> parkings = new ArrayList<>();
 }
