@@ -88,6 +88,11 @@ public class OmsApplication {
 					.forEach(a->{
 						Squadron squadron  = new Squadron();
 						squadron.setName(a);
+						squadron.setAirbase(airbaseRepo.findById(1L).get());
+						squadron.setCreationDate(new Date());
+						squadron.setAircraftType("TYPHON");
+						squadron.setTotalAircraft("36");
+						squadron.setDescription("Squadron Description !!!!!");
 						squadronRepo.save(squadron);
 					});
 
