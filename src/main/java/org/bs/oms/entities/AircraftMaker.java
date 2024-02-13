@@ -19,6 +19,8 @@ public class AircraftMaker {
     private Long id;
     private String name;
     private Boolean airForce;
+    private String nationality;
     @ManyToMany(fetch= FetchType.EAGER)
     private List<Version> versions = new ArrayList<>();
+    private String description;
 }

@@ -13,7 +13,7 @@ import java.util.Date;
 public class SquadronRequestDTO {
 
     private String name;
-    private Airbase airbase;
+    private Long airbaseId;
     private Date creationDate;
     private String AircraftType;
     private String totalAircraft;

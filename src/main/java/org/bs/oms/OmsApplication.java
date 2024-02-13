@@ -81,7 +81,7 @@ public class OmsApplication {
 			dukhanAirbase.setParkings(parkings);
 			dohaAirbase.setParkings(parkings);
 			airbaseRepo.save(dukhanAirbase);
-			airbaseRepo.save(dohaAirbase);
+			//airbaseRepo.save(dohaAirbase);
 
 			// Squadrons Creation
 			Stream.of("1st SQUADRON","7th SQUADRON","15th SQUADRON","52nd SQUADRON")
