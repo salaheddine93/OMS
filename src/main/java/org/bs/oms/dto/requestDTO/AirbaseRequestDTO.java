@@ -18,7 +18,7 @@ public class AirbaseRequestDTO {
 
     private String name;
     private String city;
-    private String altitude;
+    private String latitude;
     private String longitude;
     private String surface;
     private Date creationDate;

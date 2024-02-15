@@ -14,5 +14,7 @@ public class ParkingResponseDTO {
     private Long id;
     private String name;
     private String color;
+    private String aircraftType;
+    private int totalPlace;
     private List<Place> places;
 }

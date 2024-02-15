@@ -8,6 +8,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Stream;
@@ -30,14 +31,87 @@ public class OmsApplication {
 		return args -> {
 
 			// AirBases Creation
-			Stream.of("DUKHAN AIRBASE","ODEID AIRBASE","DOHA AIRBASE")
+			/*Stream.of("DUKHAN AIRBASE","ODEID AIRBASE","DOHA AIRBASE")
 					.forEach(a->{
 						Airbase airBase = new Airbase();
 						airBase.setName(a);
 						String[] cit = a.split(" ");
 						airBase.setCity(cit[0]);
+						airBase.setLatitude("40.714");
+						airBase.setLongitude("-74.006");
+						airBase.setSurface("50 Ha");
+						airBase.setCreationDate(new Date());
 						airbaseRepo.save(airBase);
 					});
+*/
+
+
+			Airbase airbase1 = new Airbase();
+			airbase1.setName("DUKHAN AIRBASE");
+			airbase1.setCity("DUKHAN");
+			airbase1.setLatitude("40.714");
+			airbase1.setLongitude("-74.006");
+			airbase1.setSurface("50 Ha");
+			airbase1.setCreationDate(new Date());
+			airbaseRepo.save(airbase1);
+
+			Airbase airbase2 = new Airbase();
+			airbase2.setName("DOHA AIRBASE");
+			airbase2.setCity("DOHA");
+			airbase2.setLatitude("40.714");
+			airbase2.setLongitude("-74.006");
+			airbase2.setSurface("50 Ha");
+			airbase2.setCreationDate(new Date());
+			airbaseRepo.save(airbase2);
+
+			Airbase airbase3 = new Airbase();
+			airbase3.setName("ODEID AIRBASE");
+			airbase3.setCity("ODEID");
+			airbase3.setLatitude("40.714");
+			airbase3.setLongitude("-74.006");
+			airbase3.setSurface("50 Ha");
+			airbase3.setCreationDate(new Date());
+			airbaseRepo.save(airbase3);
+
+			Airbase airbase4 = new Airbase();
+			airbase4.setName("MARINES AIRBASE");
+			airbase4.setCity("NASSRANIA");
+			airbase4.setLatitude("40.714");
+			airbase4.setLongitude("-74.006");
+			airbase4.setSurface("50 Ha");
+			airbase4.setCreationDate(new Date());
+			airbaseRepo.save(airbase4);
+
+			Airbase airbase5 = new Airbase();
+			airbase5.setName("POLICE AIRBASE");
+			airbase5.setCity("ASSAD");
+			airbase5.setLatitude("40.714");
+			airbase5.setLongitude("-74.006");
+			airbase5.setSurface("50 Ha");
+			airbase5.setCreationDate(new Date());
+			airbaseRepo.save(airbase5);
+
+			Airbase airbase6 = new Airbase();
+			airbase6.setName("ARMORY AIRBASE");
+			airbase6.setCity("JAMILIA");
+			airbase6.setLatitude("40.714");
+			airbase6.setLongitude("-74.006");
+			airbase6.setSurface("50 Ha");
+			airbase6.setCreationDate(new Date());
+			airbaseRepo.save(airbase6);
+
+			Airbase airbase7 = new Airbase();
+			airbase7.setName("KHUIA AIRBASE");
+			airbase7.setCity("OUAKRA");
+			airbase7.setLatitude("40.714");
+			airbase7.setLongitude("-74.006");
+			airbase7.setSurface("50 Ha");
+			airbase7.setCreationDate(new Date());
+			airbaseRepo.save(airbase7);
+
+
+
+
 
 			// Places Creation
 			for (int i=1; i<=7; i++){
@@ -77,12 +151,12 @@ public class OmsApplication {
 			// Adding Parking to Airbases
 			Airbase dukhanAirbase = airbaseRepo.findById(1L).get();
 			Airbase dohaAirbase = airbaseRepo.findById(3L).get();
-			List<Parking> parkings =parkingRepo.findAll();
-			dukhanAirbase.setParking(parkings);
-			dohaAirbase.setParking(parkings);
+			List<Parking> parkingList =parkingRepo.findAll();
+			dukhanAirbase.setParking(parkingList);
+			dohaAirbase.setParking(parkingList);
 			airbaseRepo.save(dukhanAirbase);
 			//airbaseRepo.save(dohaAirbase);
-
+/*
 			// Squadrons Creation
 			Stream.of("1st SQUADRON","7th SQUADRON","15th SQUADRON","52nd SQUADRON")
 					.forEach(a->{
@@ -149,9 +223,11 @@ public class OmsApplication {
 
 
 			//***************
-			Airbase airbase = new Airbase();
-			airbase.setName("Test");
-			airbaseRepo.save(airbase);
+//			Airbase airbase = new Airbase();
+//			airbase.setName("Test");
+//			airbaseRepo.save(airbase);
+
+			 */
 
 		};
 	}

@@ -17,8 +17,8 @@ public class Parking {
     private Long id;
     private String name;
     private String color;
-//    @ManyToMany
-//    private List<AircraftMaker> aircraftMakerList;
+    private String aircraftType;
+    private int totalPlace;
     @ManyToMany
     private List<Place> places;
 }

@@ -21,5 +21,5 @@ public class AirbaseResponseDTO {
     private String longitude;
     private String surface;
     private Date creationDate;
-    private List<Parking> parkings = new ArrayList<>();
+    private List<Parking> parking = new ArrayList<>();
 }

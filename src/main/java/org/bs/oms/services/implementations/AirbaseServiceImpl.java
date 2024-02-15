@@ -24,6 +24,7 @@ public class AirbaseServiceImpl implements AirbaseService {
     @Override
     public AirbaseResponseDTO addAirbase(AirbaseRequestDTO airbaseRequestDTO) {
         Airbase airbase = modelMapper.map(airbaseRequestDTO, Airbase.class);
+        airbase.setSurface(airbaseRequestDTO.getSurface()+" Ha");
         Airbase savedAirbase = airbaseRepo.save(airbase);
         return modelMapper.map(savedAirbase, AirbaseResponseDTO.class);
     }
