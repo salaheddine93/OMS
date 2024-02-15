@@ -78,8 +78,8 @@ public class OmsApplication {
 			Airbase dukhanAirbase = airbaseRepo.findById(1L).get();
 			Airbase dohaAirbase = airbaseRepo.findById(3L).get();
 			List<Parking> parkings =parkingRepo.findAll();
-			dukhanAirbase.setParkings(parkings);
-			dohaAirbase.setParkings(parkings);
+			dukhanAirbase.setParking(parkings);
+			dohaAirbase.setParking(parkings);
 			airbaseRepo.save(dukhanAirbase);
 			//airbaseRepo.save(dohaAirbase);
 

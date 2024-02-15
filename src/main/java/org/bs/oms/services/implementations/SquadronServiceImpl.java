@@ -23,7 +23,6 @@ public class SquadronServiceImpl implements SquadronService {
     @Override
     public SquadronResponseDTO addSquadron(SquadronRequestDTO squadronRequestDTO) {
         Squadron squadron = modelMapper.map(squadronRequestDTO, Squadron.class);
-        //affectation.setPosition(positionRepository.findById(dto.getPositionId()).orElseThrow(()->new BadRequestException("position incorrecte")));
         Squadron savedSquadron = squadronRepo.save(squadron);
         return modelMapper.map(savedSquadron, SquadronResponseDTO.class);
     }

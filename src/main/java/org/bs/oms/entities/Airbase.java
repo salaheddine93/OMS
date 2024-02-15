@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -19,6 +20,10 @@ public class Airbase {
     private Long id;
     private String name;
     private String city;
+    private String latitude;
+    private String longitude;
+    private String surface;
+    private Date creationDate;
     @OneToMany(fetch= FetchType.EAGER)
-    private List<Parking> parkings = new ArrayList<>();
+    private List<Parking> parking = new ArrayList<>();
 }

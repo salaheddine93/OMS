@@ -15,7 +15,7 @@ public class SquadronRequestDTO {
     private String name;
     private Long airbaseId;
     private Date creationDate;
-    private String AircraftType;
+    private String aircraftType;
     private String totalAircraft;
     private String description;
 }
