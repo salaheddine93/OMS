@@ -15,7 +15,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class AirbaseRequestDTO {
-
+    private Long id;
     private String name;
     private String city;
     private String latitude;
