@@ -1,6 +1,5 @@
 package org.bs.oms.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -28,4 +27,6 @@ public class Airbase {
     //@JsonIgnore
     @OneToMany(fetch= FetchType.EAGER)
     private List<Parking> parking = new ArrayList<>();
+    @OneToMany
+    private List<Squadron> squadrons = new ArrayList<>();
 }

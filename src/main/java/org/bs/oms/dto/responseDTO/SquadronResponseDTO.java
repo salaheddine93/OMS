@@ -14,7 +14,6 @@ public class SquadronResponseDTO {
 
     private Long id;
     private String name;
-    private Airbase airbase;
     private Date creationDate;
     private String AircraftType;
     private String totalAircraft;

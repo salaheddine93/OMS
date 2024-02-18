@@ -17,8 +17,6 @@ public class Squadron {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    @ManyToOne
-    private Airbase airbase;
     private Date creationDate;
     private String AircraftType;
     private String totalAircraft;

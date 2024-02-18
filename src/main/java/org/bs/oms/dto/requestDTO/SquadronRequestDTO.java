@@ -12,8 +12,8 @@ import java.util.Date;
 @NoArgsConstructor
 public class SquadronRequestDTO {
 
+    private Long id;
     private String name;
-    private Long airbaseId;
     private Date creationDate;
     private String aircraftType;
     private String totalAircraft;

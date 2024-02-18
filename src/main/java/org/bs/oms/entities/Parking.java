@@ -18,7 +18,7 @@ public class Parking {
     private String name;
     private String color;
     private String aircraftType;
-    private int totalPlace;
+    private Integer totalPlaces;
     @ManyToMany
     private List<Place> places;
 }

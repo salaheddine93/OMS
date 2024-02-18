@@ -15,6 +15,7 @@ public class ParkingResponseDTO {
     private String name;
     private String color;
     private String aircraftType;
-    private int totalPlace;
+    private Integer totalPlaces;
     private List<Place> places;
+    private String description;
 }
