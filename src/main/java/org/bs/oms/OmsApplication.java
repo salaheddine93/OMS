@@ -130,32 +130,32 @@ public class OmsApplication {
 			}
 
 			// Parking Creation
-			Stream.of("Parking A","Parking B")
-					.forEach(i->{
-						Parking parking = new Parking();
-						parking.setName(i);
-						parking.setColor("Orange");
-						parkingRepo.save(parking);
-					});
+//			Stream.of("Parking A","Parking B")
+//					.forEach(i->{
+//						Parking parking = new Parking();
+//						parking.setName(i);
+//						parking.setColor("Orange");
+//						parkingRepo.save(parking);
+//					});
 
 			// Adding Places to Parking
-			Parking parkingA = parkingRepo.findById(1L).get();
-			Parking parkingB = parkingRepo.findById(2L).get();
-			List<Place> placesF = placeRepo.findByNameContaining("F");
-			List<Place> placesS = placeRepo.findByNameContaining("S");
-			parkingA.setPlaces(placesF);
-			parkingRepo.save(parkingA);
-			parkingB.setPlaces(placesS);
-			parkingRepo.save(parkingB);
+//			Parking parkingA = parkingRepo.findById(1L).get();
+//			Parking parkingB = parkingRepo.findById(2L).get();
+//			List<Place> placesF = placeRepo.findByNameContaining("F");
+//			List<Place> placesS = placeRepo.findByNameContaining("S");
+//			parkingA.setPlaces(placesF);
+//			parkingRepo.save(parkingA);
+//			parkingB.setPlaces(placesS);
+//			parkingRepo.save(parkingB);
 
 			// Adding Parking to Airbases
-			Airbase dukhanAirbase = airbaseRepo.findById(1L).get();
-			Airbase dohaAirbase = airbaseRepo.findById(3L).get();
-			List<Parking> parkingList =parkingRepo.findAll();
-			dukhanAirbase.setParking(parkingList);
-			dohaAirbase.setParking(parkingList);
-			airbaseRepo.save(dukhanAirbase);
-			//airbaseRepo.save(dohaAirbase);
+//			Airbase dukhanAirbase = airbaseRepo.findById(1L).get();
+//			Airbase dohaAirbase = airbaseRepo.findById(3L).get();
+//			List<Parking> parkingList =parkingRepo.findAll();
+//			dukhanAirbase.setParking(parkingList);
+//			dohaAirbase.setParking(parkingList);
+//			airbaseRepo.save(dukhanAirbase);
+//			//airbaseRepo.save(dohaAirbase);
 /*
 			// Squadrons Creation
 			Stream.of("1st SQUADRON","7th SQUADRON","15th SQUADRON","52nd SQUADRON")

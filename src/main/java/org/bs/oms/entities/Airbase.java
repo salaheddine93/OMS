@@ -25,8 +25,8 @@ public class Airbase {
     private String surface;
     private Date creationDate;
     //@JsonIgnore
-    @OneToMany(fetch= FetchType.EAGER)
-    private List<Parking> parking = new ArrayList<>();
+//    @OneToMany(fetch= FetchType.EAGER)
+//    private List<Parking> parking = new ArrayList<>();
     @OneToMany
     private List<Squadron> squadrons = new ArrayList<>();
 }

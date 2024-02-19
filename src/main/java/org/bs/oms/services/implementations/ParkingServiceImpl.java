@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.bs.oms.dto.requestDTO.ParkingRequestDTO;
 import org.bs.oms.dto.responseDTO.ParkingResponseDTO;
 import org.bs.oms.entities.Parking;
+import org.bs.oms.repositories.AirbaseRepo;
 import org.bs.oms.repositories.ParkingRepo;
 import org.bs.oms.services.interfaces.ParkingService;
 import org.modelmapper.ModelMapper;
@@ -18,11 +19,13 @@ import java.util.stream.Collectors;
 public class ParkingServiceImpl implements ParkingService {
 
     private final ParkingRepo parkingRepo;
+    private final AirbaseRepo airbaseRepo;
     private final ModelMapper modelMapper;
 
     @Override
     public ParkingResponseDTO addParking(ParkingRequestDTO parkingRequestDTO) {
         Parking parking = modelMapper.map(parkingRequestDTO, Parking.class);
+        parking.setAirbase(airbaseRepo.findById(parkingRequestDTO.getAirbaseId()).orElseThrow(()-> new RuntimeException("Airbase not found !!!")));
         Parking savedParking = parkingRepo.save(parking);
         return modelMapper.map(savedParking, ParkingResponseDTO.class);
     }

@@ -16,6 +16,8 @@ public class Parking {
     @Id@GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+    @ManyToOne
+    private Airbase airbase;
     private String color;
     private String aircraftType;
     private Integer totalPlaces;

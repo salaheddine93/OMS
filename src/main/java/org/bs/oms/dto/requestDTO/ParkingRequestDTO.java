@@ -3,6 +3,7 @@ package org.bs.oms.dto.requestDTO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.bs.oms.entities.Airbase;
 import org.bs.oms.entities.Place;
 
 import java.util.List;
@@ -14,6 +15,7 @@ public class ParkingRequestDTO {
 
     private Long id;
     private String name;
+    private Long airbaseId;
     private String color;
     private String aircraftType;
     private Integer totalPlaces;

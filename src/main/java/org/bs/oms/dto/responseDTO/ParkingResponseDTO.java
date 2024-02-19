@@ -13,6 +13,7 @@ import java.util.List;
 public class ParkingResponseDTO {
     private Long id;
     private String name;
+    private Long airbaseId;
     private String color;
     private String aircraftType;
     private Integer totalPlaces;
